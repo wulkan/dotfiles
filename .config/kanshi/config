@@ -1,0 +1,4 @@
+{
+  output eDP-1 disable
+	output DP-4 mode 3840x2160 position 0,0
+}

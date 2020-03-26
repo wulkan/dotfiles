@@ -1,0 +1,27 @@
+- defaults:
+    link:
+      relink: true
+      force: true
+    shell:
+      stderr: true
+
+- clean: ['~']
+
+- shell:
+  - [TMUX_PLUGIN_MANAGER_PATH=$HOME/.tmux/plugins /bin/bash pre-install.sh, Running pre install script]
+
+- link:
+    ~/.config/alacritty: .config/alacritty
+    ~/.config/kanshi: .config/kanshi
+    ~/.config/kitty: .config/kitty
+    ~/.config/mako: .config/mako
+    ~/.config/nvim: .config/nvim
+    ~/.config/sway: .config/sway
+    ~/.config/wofi: .config/wofi
+    ~/.profile: .profile
+    ~/.tmux.conf: .tmux.conf
+    ~/.zshrc: .zshrc
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+  - [nvim +PlugInstall +qall, Installing NeoVim plugins]

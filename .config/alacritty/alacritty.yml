@@ -105,3 +105,6 @@ shell:
 #  args:
 #    - --login
 
+mouse:
+  hide_when_typing: true
+

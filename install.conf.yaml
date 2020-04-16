@@ -20,6 +20,7 @@
     ~/.config/wofi: .config/wofi
     ~/.profile: .profile
     ~/.tmux.conf: .tmux.conf
+    ~/.zsh_plugins: .zsh_plugins
     ~/.zshrc: .zshrc
 
 - shell:

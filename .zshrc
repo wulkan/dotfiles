@@ -28,8 +28,12 @@ fi
 alias vim="nvim"
 export GOPATH="$HOME/git/go"
 export PATH="$GOPATH/bin:$PATH"
-export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$HOME/bin:/usr/local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
+export PATH="$PATH:/usr/lib/go-1.14/bin"
+export GOROOT="/usr/lib/go-1.14"
+export GOTOOLDIR="/usr/lib/go-1.14/pkg/tool/linux_amd64"
 
 #export WAYLAND_DISPLAY=alacritty
 
@@ -43,11 +47,8 @@ export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 
-# fix ssh deamon for term when we are not in gnome shell
-if [ -n "$DESKTOP_SESSION" ];then
-		eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
-		export $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg)
-		dbus-update-activation-environment --systemd DISPLAY
+if [[ -n keychain ]]; then
+     eval $(keychain --eval --quick --quiet --agents ssh id_rsa)
 fi
 
 source <(antibody init)
@@ -74,4 +75,12 @@ fi
 
 alias ls="ls --color=tty"
 alias l="ls -l --color=tty"
+alias ll="ls -l --color=tty"
 alias la="ls -la --color=tty"
+alias bazel="bazelisk"
+
+source $HOME/.aws.zsh
+source $HOME/.kops.zsh
+
+source $HOME/.fzf/shell/key-bindings.zsh
+source $HOME/.fzf/shell/completion.zsh

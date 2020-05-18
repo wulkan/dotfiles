@@ -556,3 +556,5 @@ else
   let g:airline_symbols.readonly = ''
   let g:airline_symbols.linenr = ''
 endif
+
+hi Normal guibg=NONE ctermbg=NONE

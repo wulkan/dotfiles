@@ -84,3 +84,9 @@ source $HOME/.kops.zsh
 
 source $HOME/.fzf/shell/key-bindings.zsh
 source $HOME/.fzf/shell/completion.zsh
+
+if [[ -n cron ]]; then 
+    sudo /etc/init.d/cron start &> /dev/null
+fi
+
+bindkey -e

@@ -9,6 +9,7 @@ set cmdheight=2
 " delays and poor user experience.
 set updatetime=300
 
+set nowrap
 set number relativenumber
 
 augroup numbertoggle

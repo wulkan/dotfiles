@@ -3,6 +3,7 @@ compinit
 
 ## History file configuration
 [ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
+setopt HIST_IGNORE_SPACE
 HISTSIZE=50000
 SAVEHIST=10000
 HIST_STAMPS="yyyy-mm-dd"
@@ -90,3 +91,7 @@ if [[ -n cron ]]; then
 fi
 
 bindkey -e
+
+#export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
+
+source $HOME/qmk_utils/activate_wsl.sh

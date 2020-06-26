@@ -355,6 +355,7 @@ endif
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>e :FZF -m<CR>
+nnoremap <silent> <leader>n :GFiles<CR> 
 "Recovery commands from history through FZF
 nmap <leader>y :History:<CR>
 
@@ -557,4 +558,4 @@ else
   let g:airline_symbols.linenr = ''
 endif
 
-hi Normal guibg=NONE ctermbg=NONE
+"hi Normal guibg=NONE ctermbg=NONE

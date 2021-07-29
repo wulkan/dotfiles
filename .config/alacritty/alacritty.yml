@@ -25,9 +25,6 @@ window:
 scrolling:
   history: 10000
   multiplier: 3
-  auto_scroll: false
-
-tabspaces: 3
 
 # Font configuration
 font:
@@ -82,16 +79,7 @@ colors:
     white:   '0xECEFF4'
   indexed_colors: []
 
-# Specifying a `duration` of `0` will disable the visual bell.
-visual_bell:
-  animation: EaseOutExpo
-  duration: 500
-  color: '0x000000'
-
 background_opacity: 0.95
-
-# Allow terminal applications to change Alacritty's window title.
-dynamic_title: true
 
 cursor:
   #   - ▇ Block

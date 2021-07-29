@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 autoload -Uz compinit
 compinit
 
@@ -32,11 +39,9 @@ export PATH="$GOPATH/bin:$PATH"
 export PATH="$PATH:$HOME/bin:/usr/local/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
-export PATH="$PATH:/usr/lib/go-1.14/bin"
-export GOROOT="/usr/lib/go-1.14"
-export GOTOOLDIR="/usr/lib/go-1.14/pkg/tool/linux_amd64"
-
-#export WAYLAND_DISPLAY=alacritty
+#export PATH="$PATH:/usr/lib/go-1.14/bin"
+export GOROOT="/home/napoleon/.go"
+export GOTOOLDIR="/home/napoleon/.go/pkg/tool/linux_amd64"
 
 function list_all() {
     emulate -L zsh
@@ -44,17 +49,14 @@ function list_all() {
 }
 chpwd_functions=(${chpwd_functions[@]} "list_all")
 
-export GTK_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
-export QT_IM_MODULE=ibus
-
 if [[ -n keychain ]]; then
      eval $(keychain --eval --quick --quiet --agents ssh id_rsa)
 fi
 
 source <(antibody init)
 
-antibody bundle denysdovhan/spaceship-prompt
+antibody bundle romkatv/powerlevel10k
+#antibody bundle denysdovhan/spaceship-prompt
 antibody bundle zsh-users/zsh-completions
 source <(kubectl completion zsh)
 
@@ -78,10 +80,13 @@ alias ls="ls --color=tty"
 alias l="ls -l --color=tty"
 alias ll="ls -l --color=tty"
 alias la="ls -la --color=tty"
-alias bazel="bazelisk"
+#alias bazel="bazelisk"
 
-source $HOME/.aws.zsh
-source $HOME/.kops.zsh
+alias python="python3"
+alias pip="python3 -m pip"
+
+alias kubectl="env $(grep -hv '^#' $HOME/.kops.env $HOME/.aws.env | xargs) kubectl"
+alias kops="env $(grep -hv '^#' $HOME/.kops.env | xargs) kops"
 
 source $HOME/.fzf/shell/key-bindings.zsh
 source $HOME/.fzf/shell/completion.zsh
@@ -92,6 +97,13 @@ fi
 
 bindkey -e
 
-#export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
+alias activate_qmk="$HOME/qmk_utils/activate_wsl.sh"
 
-source $HOME/qmk_utils/activate_wsl.sh
+alias update_go="curl -LO https://get.golang.org/$(uname)/go_installer && chmod +x go_installer && ./go_installer && rm go_installer"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export PATH=$PATH:/home/napoleon/.go/bin
+
+export PATH=$PATH:/home/napoleon/git/go/bin
